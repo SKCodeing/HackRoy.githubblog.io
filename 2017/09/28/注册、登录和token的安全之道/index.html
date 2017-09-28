@@ -69,18 +69,18 @@
 
 
 
-<meta name="description" content="##注册、登录和 token 的安全之道 最近想要做一个小项目，由于前后都是一个人，在登录和注册的接口上就被卡住了，因此想登录、注册、口令之间的关系，使用 PHP 实现登录注册模块，和访问口令。 出于安全的考虑，首先定下三项原则： 在传输中，不允许明文传输用户隐私数据；在本地，不允许明文保存用户隐私数据；在服务器，不允许明文保存用户隐私数据；在网络来说，我们知道不论 POST 请求和 GET 请求">
+<meta name="description" content="注册、登录和 token 的安全之道  最近想要做一个小项目，由于前后都是一个人，在登录和注册的接口上就被卡住了，因此想登录、注册、口令之间的关系，使用 PHP 实现登录注册模块，和访问口令。  出于安全的考虑，首先定下三项原则： 在传输中，不允许明文传输用户隐私数据；在本地，不允许明文保存用户隐私数据；在服务器，不允许明文保存用户隐私数据；在网络来说，我们知道不论 POST 请求和 GET 请">
 <meta name="keywords" content="PHP,Interface">
 <meta property="og:type" content="article">
 <meta property="og:title" content="注册、登录和token的安全之道">
 <meta property="og:url" content="http://yoursite.com/2017/09/28/注册、登录和token的安全之道/index.html">
 <meta property="og:site_name" content="Hacker">
-<meta property="og:description" content="##注册、登录和 token 的安全之道 最近想要做一个小项目，由于前后都是一个人，在登录和注册的接口上就被卡住了，因此想登录、注册、口令之间的关系，使用 PHP 实现登录注册模块，和访问口令。 出于安全的考虑，首先定下三项原则： 在传输中，不允许明文传输用户隐私数据；在本地，不允许明文保存用户隐私数据；在服务器，不允许明文保存用户隐私数据；在网络来说，我们知道不论 POST 请求和 GET 请求">
+<meta property="og:description" content="注册、登录和 token 的安全之道  最近想要做一个小项目，由于前后都是一个人，在登录和注册的接口上就被卡住了，因此想登录、注册、口令之间的关系，使用 PHP 实现登录注册模块，和访问口令。  出于安全的考虑，首先定下三项原则： 在传输中，不允许明文传输用户隐私数据；在本地，不允许明文保存用户隐私数据；在服务器，不允许明文保存用户隐私数据；在网络来说，我们知道不论 POST 请求和 GET 请">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-28T09:33:02.000Z">
+<meta property="og:updated_time" content="2017-09-28T09:35:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="注册、登录和token的安全之道">
-<meta name="twitter:description" content="##注册、登录和 token 的安全之道 最近想要做一个小项目，由于前后都是一个人，在登录和注册的接口上就被卡住了，因此想登录、注册、口令之间的关系，使用 PHP 实现登录注册模块，和访问口令。 出于安全的考虑，首先定下三项原则： 在传输中，不允许明文传输用户隐私数据；在本地，不允许明文保存用户隐私数据；在服务器，不允许明文保存用户隐私数据；在网络来说，我们知道不论 POST 请求和 GET 请求">
+<meta name="twitter:description" content="注册、登录和 token 的安全之道  最近想要做一个小项目，由于前后都是一个人，在登录和注册的接口上就被卡住了，因此想登录、注册、口令之间的关系，使用 PHP 实现登录注册模块，和访问口令。  出于安全的考虑，首先定下三项原则： 在传输中，不允许明文传输用户隐私数据；在本地，不允许明文保存用户隐私数据；在服务器，不允许明文保存用户隐私数据；在网络来说，我们知道不论 POST 请求和 GET 请">
 
 
 
@@ -352,17 +352,23 @@
       
 
       
-        <p>##注册、登录和 token 的安全之道</p>
+        <blockquote>
+<p>注册、登录和 token 的安全之道</p>
+</blockquote>
 <p>最近想要做一个小项目，由于前后都是一个人，在登录和注册的接口上就被卡住了，因此想登录、注册、口令之间的关系，使用 PHP 实现登录注册模块，和访问口令。</p>
+<blockquote>
 <p>出于安全的考虑，首先定下三项原则：</p>
 <p>在传输中，不允许明文传输用户隐私数据；<br>在本地，不允许明文保存用户隐私数据；<br>在服务器，不允许明文保存用户隐私数据；<br>在网络来说，我们知道不论 POST 请求和 GET 请求都会被抓包，在没有使用 HTTPS 的情况下，抓包我们是防不住的，如果明文传输用户隐私，那后果就不说了。</p>
+</blockquote>
 <p>本地和服务器也是如此，比如 iOS 设备，如果存储在本地，越狱之后通过设备 Finder 之类的功能，也能轻易找到我们存储在本地的用户隐私。</p>
 <p>使用 Keychain 在本地也有保存，但不在沙盒，暂且忽略。<br>上面讲到，用户隐私数据总归可以被拿到的，如何保证被拿到之后不会被用来做坏事？</p>
-<p>###加密</p>
+<blockquote>
+<p>加密</p>
+</blockquote>
 <p>将用户的隐私数据加密，那么就算被拿到，也无法被拿来使用。在这里呢，我们先不谈加密，而是先纠正一个误区，有些朋友会认为 Base64 可以加密，甚至有 Base64 加密的说法。</p>
 <p>Base64 主要不是加密，它主要的用途是把二进制数据序列转化为 ASCII 字符序列，用以数据传输。二进制数据是什么呢？计算机上存储的所有数据，都是二进制数据。</p>
 <p>Base64 最常见的应用场景是 URL，因为 URL 只能是特定的一些 ASCII 字符。这时需要用到 Base64 编码，当然这也只是对二进制数据本身的编码，编码后的数据里面可能包含 +/= 等符号，真正放到 URL 里面时候，还需要URL-Encoding，变成 %XX 模式，以消除这些符号的歧义。其次就是将图片转为 Base64 的字符串。</p>
-<p>###因此，Base64 只是一种编码方式，而不是加密方式。</p>
+<p>因此，Base64 只是一种编码方式，而不是加密方式。</p>
 <p>好了，现在回到我们的主题，先说登录和注册之间的关系，这 3 个模块需要做什么事情呢？</p>
 <blockquote>
 <ul>
@@ -378,18 +384,26 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">/*获取 get 请求传递的参数*/</div><div class="line">$account = $_GET[&apos;account&apos;];</div><div class="line">$password = $_GET[&apos;password&apos;];</div><div class="line"></div><div class="line">/*创建数据连接*/</div><div class="line">$db = new DataBase();</div><div class="line"></div><div class="line">/*是否命中用户名和密码*/</div><div class="line">$should_login = $db-&gt;should_login($account, $password);</div><div class="line"></div><div class="line">if ($should_login) &#123;</div><div class="line">    /*更新 token*/</div><div class="line">    $token = $db-&gt;insert_token($account);</div><div class="line">    if ($token == &apos;&apos;) &#123;</div><div class="line">        echo response(40001, false);</div><div class="line">    &#125;</div><div class="line">    else &#123;</div><div class="line">        $data = [&apos;token&apos; =&gt; $token];</div><div class="line">        echo response(0, $data);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">else &#123;</div><div class="line">    echo response(30001, false);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>剩下的无非是加密算法的不同，我最常用的是 md5，那么我们经过 md5 加密以后，其实还是不太安全，为什么呢？因为 md5 本身就不安全。虽然 md5 是不可逆的 hash 算法，反向算出来虽然困难，但是如果反向查询，密码设置的简单，也很容易被攻破。</p>
 <p>比如我们使用 md5 加密一个密码 123456，对应的 md5 是 e10adc3949ba59abbe56e057f20f883e，找到一个 md5 解密的网站，比如 cmd5.com/，很容易就被破解了密码…</p>
-<p>###加盐</p>
+<blockquote>
+<p>加盐</p>
+</blockquote>
 <p>工作一段时间的同学对这个名词应该不会陌生，这种方式算是给用户的隐私数据加上密了，其实就是一段隐私数据加一段乱码再进行 md5，用代码表示大致是这样：</p>
 <p>// 伪代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">salt = &apos;#^&amp;%**(^&amp;(&amp;*)_)_(*&amp;^&amp;#$%GVHKBJ(*^&amp;*%^%&amp;^&amp;&apos;</div><div class="line">password = &apos;123456&apos;</div><div class="line">post_body = salt + password</div><div class="line">print post_body.md5()</div><div class="line">// ffb34d898f6573a1cf14fdc34d3343c0</div></pre></td></tr></table></figure>
 <p>现在，密码看起来挺靠谱的了，但是，我们知道加盐这种方式是比较早期的处理方式了，既然现在没有在大范围使用了，就说明单纯加盐还是存在缺陷的。</p>
-<p>###有泄露的可能</p>
+<blockquote>
+<p>有泄露的可能</p>
+</blockquote>
 <p>现在我们在客户端对密码做了 md5 加盐，服务器保存的也是加密后的内容，但是，盐是写在了客户端的源代码中，一旦对源代码进行反编译，找到 salt 这个字符串，那么加盐的做法也就形同虚设了。</p>
 <p>反编译源代码的代价也很高，一般对于安全性能要求不高的话，也够用了，但是，对于一些涉及资金之类的 App 来说，仅仅加盐还是不够的。</p>
 <p>比如离职的技术同学不是很开心，又或者有人想花钱买这串字符等等，盐一旦被泄露，就是一场灾难，这也是盐最大的缺陷。</p>
-<p>###依赖性太强</p>
+<blockquote>
+<p>依赖性太强</p>
+</blockquote>
 <p>盐一旦被设定，那么再做修改的话就非常困难了，因为服务器存储的全部是加盐后的数据，如果换盐，那么这些数据全部都需要改动。但是可怕的不在于此，如果将服务器的数据改动后，旧版本的用户再访问又都不可以了，因为他们用的是之前的盐。</p>
-<p>###HMAC</p>
+<blockquote>
+<p>HMAC</p>
+</blockquote>
 <p>目前最常见的方式，应该就是 HMAC 了，HMAC 算法主要应用于身份验证，与加盐的不同点在于，盐被移到了服务器，服务器返回什么，就用什么作为盐。</p>
 <p>这么做有什么好处呢？ 如果我们在登录的过程中，黑客截获了我们发送的数据，他也只能得到 HMAC 加密过后的结果，由于不知道密钥，根本不可能获取到用户密码，从而保证了安全性。</p>
 <p>但是还有一个问题，前面我们讲到，盐被获取以后很危险，如果从服务器获取盐，也会被抓包，那还不如写在源代码里面呢，至少被反编译还困难点，那如果解决这个隐患呢？</p>
@@ -409,17 +423,23 @@
 <p>同时我们需要创建一个获取 salt 的接口：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">/*获取 get 请求传递的参数*/</div><div class="line">$account = $_GET[&apos;account&apos;];</div><div class="line">$bundle_id = $_GET[&apos;bundleId&apos;];</div><div class="line"></div><div class="line">/*创建数据连接*/</div><div class="line">$db = new DataBase();</div><div class="line"></div><div class="line">/*获取秘钥*/</div><div class="line">$salt = $db-&gt;get_salt($account, $bundle_id);</div><div class="line"></div><div class="line">if ($salt == &apos;&apos;) &#123;</div><div class="line">    echo response(40001, false);</div><div class="line">&#125;</div><div class="line">else &#123;</div><div class="line">    $data = [&apos;salt&apos;=&gt;$salt];</div><div class="line">    echo response(0, $data);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>写到这里，就可以给大家介绍一个比较好玩的东西了。</p>
-<p>###设备锁</p>
+<blockquote>
+<p>设备锁</p>
+</blockquote>
 <p>一些 App 具有设备锁的功能，比如 QQ，这个功能是将账号与设备进行绑定，如果其他人知道了用户的账号和密码，但是设备不符，同样无法登录，怎样实现呢？</p>
 <p>就是用户开启设备锁之后，如果设备中没有 salt，那么就不再请求 getSalt 接口，而是转为其他验证方式，通过之后，才可以请求 getSalt。</p>
-<p>###提升单个用户的安全性</p>
+<blockquote>
+<p>提升单个用户的安全性</p>
+</blockquote>
 <p>现在这个 App 相对来说比较安全了，上面说到，因为每个用户的 salt 都不一样，破解单个用户的利益不大，所以，对于平台来说安全性已经比较高了，但凡是都有例外，如果这个破坏者就是铁了心要搞事情，就针对一个用户，现在这个方案，还有哪些问题存在呢？</p>
 <p>注册时返回的 salt 被抓包时有可能会泄露；<br>更换设备后，获取的 salt 被抓包时有可能会泄露；<br>保存在本地的 salt ，有可能通过文件路径获取到；<br>抓包的人就算不知道密码，通过 hmac 加密后的字符，也可以进行登录；</p>
 <p>怎么处理呢？首先我们需要清楚的是，之所以会被破解，是拿到了我们加密时的因子，或者叫种子，这个种子服务器和客户端都必须要有，如果没有的话，两者就无法进行通信了，但是我们也不能在客户端将种子写死，在服务器给客户端种子时，总会有可能被获取。</p>
 <p>我们要设计一种思路，需要有一个种子，服务器和客户端之间无需通讯，但是都可以被理解的种子。</p>
 <p>同时我们需要这个种子是动态的，每次加密的结果都不一样，那么就算抓到了加密后的密码，这个密码也随之失效了。</p>
 <p>所以，我们需要一个无需服务器和客户端通讯的，动态的种子，时间。</p>
-<p>###HMAC+时间</p>
+<blockquote>
+<p>HMAC+时间</p>
+</blockquote>
 <p>这个动态的种子是如何使用的呢？</p>
 <p>客户端发送注册请求，服务器返回 salt，保存 hmac 后的密码；<br>客户端保存 salt；<br>客户端发送登录请求，参数为 hmac 后的密码，加上当前的时间；<br>服务器收到登录请求，将数据库中的密码，加上当前的时间，进行比对；<br>客户端代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// 秘钥</div><div class="line">const salt = &apos;&apos;</div><div class="line">// 当前时间，精确到分钟</div><div class="line">const currentTime = &apos;201709171204&apos;</div><div class="line">// 用户输入的密码</div><div class="line">let password = &apos;123456&apos;</div><div class="line">// (hmac+currentTime).md5</div><div class="line">password = (password.hmac(salt) + currentTime).md5()</div><div class="line">network(&apos;login&apos;, &#123;method: &apos;GET&apos;, params: &#123;password:password&#125;&#125;)</div></pre></td></tr></table></figure>

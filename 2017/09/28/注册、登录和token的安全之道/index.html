@@ -53,7 +53,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="PHP,Interface," />
 
 
 
@@ -69,13 +69,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hacker">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="##注册、登录和 token 的安全之道 最近想要做一个小项目，由于前后都是一个人，在登录和注册的接口上就被卡住了，因此想登录、注册、口令之间的关系，使用 PHP 实现登录注册模块，和访问口令。 出于安全的考虑，首先定下三项原则： 在传输中，不允许明文传输用户隐私数据；在本地，不允许明文保存用户隐私数据；在服务器，不允许明文保存用户隐私数据；在网络来说，我们知道不论 POST 请求和 GET 请求">
+<meta name="keywords" content="PHP,Interface">
+<meta property="og:type" content="article">
+<meta property="og:title" content="注册、登录和token的安全之道">
+<meta property="og:url" content="http://yoursite.com/2017/09/28/注册、登录和token的安全之道/index.html">
 <meta property="og:site_name" content="Hacker">
+<meta property="og:description" content="##注册、登录和 token 的安全之道 最近想要做一个小项目，由于前后都是一个人，在登录和注册的接口上就被卡住了，因此想登录、注册、口令之间的关系，使用 PHP 实现登录注册模块，和访问口令。 出于安全的考虑，首先定下三项原则： 在传输中，不允许明文传输用户隐私数据；在本地，不允许明文保存用户隐私数据；在服务器，不允许明文保存用户隐私数据；在网络来说，我们知道不论 POST 请求和 GET 请求">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-28T09:26:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hacker">
+<meta name="twitter:title" content="注册、登录和token的安全之道">
+<meta name="twitter:description" content="##注册、登录和 token 的安全之道 最近想要做一个小项目，由于前后都是一个人，在登录和注册的接口上就被卡住了，因此想登录、注册、口令之间的关系，使用 PHP 实现登录注册模块，和访问口令。 出于安全的考虑，首先定下三项原则： 在传输中，不允许明文传输用户隐私数据；在本地，不允许明文保存用户隐私数据；在服务器，不允许明文保存用户隐私数据；在网络来说，我们知道不论 POST 请求和 GET 请求">
 
 
 
@@ -105,13 +110,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/28/注册、登录和token的安全之道/"/>
 
 
 
 
 
-  <title>Hacker</title>
+  <title>注册、登录和token的安全之道 | Hacker</title>
   
 
 
@@ -130,8 +135,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -244,9 +248,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -276,9 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/28/注册、登录和token的安全之道/" itemprop="url">注册、登录和token的安全之道</a></h1>
+          <h1 class="post-title" itemprop="name headline">注册、登录和token的安全之道</h1>
         
 
         <div class="post-meta">
@@ -328,9 +330,7 @@
       
 
       
-        
-          
-            <p>##注册、登录和 token 的安全之道</p>
+        <p>##注册、登录和 token 的安全之道</p>
 <p>最近想要做一个小项目，由于前后都是一个人，在登录和注册的接口上就被卡住了，因此想登录、注册、口令之间的关系，使用 PHP 实现登录注册模块，和访问口令。</p>
 <p>出于安全的考虑，首先定下三项原则：</p>
 <p>在传输中，不允许明文传输用户隐私数据；<br>在本地，不允许明文保存用户隐私数据；<br>在服务器，不允许明文保存用户隐私数据；<br>在网络来说，我们知道不论 POST 请求和 GET 请求都会被抓包，在没有使用 HTTPS 的情况下，抓包我们是防不住的，如果明文传输用户隐私，那后果就不说了。</p>
@@ -407,8 +407,6 @@
 <p>聪明的你应该可以想到，这也就是验证码 5 分钟内有效期的实现。</p>
 <p>现在这个 App，就算注册时拿到了 salt，也很难在 1 分钟内反推出密码，同时，抓包的密码一分钟后也就失效了，对于单个用户的安全性，也有了进一步的提升。</p>
 
-          
-        
       
     </div>
     
@@ -423,14 +421,22 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+            <a href="/tags/Interface/" rel="tag"># Interface</a>
+          
+        </div>
+      
+
+      
+      
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -440,10 +446,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -451,6 +458,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
